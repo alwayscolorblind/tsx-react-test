@@ -1,27 +1,32 @@
-import React, {useRef} from 'react';
+import React, { FC, useState, useContext } from 'react';
 
-interface TodoFormProps{
-    addTodo(title: string) : void
-}
+import { StoreContext } from "../App";
 
-const TodoForm: React.FC<TodoFormProps> = (props) => {
-    const ref = useRef<HTMLInputElement>(null);
+const TodoForm: FC = () => {
+    const [title, setTitle] = useState<string>("");
+
+    const { handleAdd } = useContext(StoreContext);
 
     const keyPressedHandler = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter') {
-            props.addTodo(ref.current!.value);
-            ref.current!.value = '';
+            handleAdd(title);
+            setTitle(() => "");
         }
     };
+
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement> ) => {
+      setTitle(() => event.target.value);
+    }
 
     return (
         <div className="input-field mt5">
             <input
-                ref={ref}
                 type="text"
                 id="title"
                 placeholder="Title"
                 onKeyPress={keyPressedHandler}
+                onChange={changeHandler}
+                value={title}
             />
             <label htmlFor="title" className="active">Enter title</label>
         </div>

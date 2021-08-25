@@ -1,36 +1,35 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {FC, useEffect, useContext} from 'react';
 
 import TodoForm from "../components/TodoForm";
+
 import TodoList from "../components/TodoList";
 
 import {ITodo} from "../interfaces/interfaces";
 
-import Store from "../stores/store";
-
 import {observer} from "mobx-react";
 
-const store = new Store();
+import {StoreContext} from "../App";
 
-@observer
-class TodosPage extends Component<{}, {}> {
-    componentDidMount = () => {
+const TodosPage: FC = observer(() => {
+      const store = useContext(StoreContext)
+
+      useEffect(() => {
         const saved = JSON.parse(localStorage.getItem("todos") || '[]') as ITodo[];
 
         store.setTodos(saved);
-    };
+      });
 
-    componentDidUpdate = () => {
+      useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(store.todos));
-    };
+      }, [store.todos]);
 
-    render() {
-        return (
-            <>
-                <TodoForm addTodo={store.handleAdd}/>
-                <TodoList todos={store.todos} onRemove={store.onRemove} onToggle={store.onToggle} />
-            </>
-        );
+      return (
+          <>
+            <TodoForm/>
+            <TodoList/>
+          </>
+      );
     }
-}
+)
 
 export default TodosPage;
