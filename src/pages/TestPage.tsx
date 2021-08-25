@@ -5,6 +5,7 @@ import Store from "../stores/store";
 
 const store = new Store();
 
+@observer
 const TestPage = () => {
     return (
         <>
