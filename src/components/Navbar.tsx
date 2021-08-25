@@ -1,7 +1,8 @@
-import React from "react";
-import {NavLink} from "react-router-dom";
+import React, { FC } from "react";
 
-export const Navbar: React.FC = () => (
+import { NavLink } from "react-router-dom";
+
+export const Navbar: FC = () => (
     <nav>
       <div className="nav-wrapper px1">
         <a href="/" className="brand-logo">React + TS</a>

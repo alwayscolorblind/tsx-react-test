@@ -1,14 +1,14 @@
-import React, {FC, useEffect, useContext} from 'react';
+import React, { FC, useEffect, useContext } from 'react';
 
 import TodoForm from "../components/TodoForm";
 
 import TodoList from "../components/TodoList";
 
-import {ITodo} from "../interfaces/interfaces";
+import { ITodo } from "../interfaces/interfaces";
 
-import {observer} from "mobx-react";
+import { observer } from "mobx-react";
 
-import {StoreContext} from "../App";
+import { StoreContext } from "../App";
 
 const TodosPage: FC = observer(() => {
       const store = useContext(StoreContext)
@@ -17,7 +17,7 @@ const TodosPage: FC = observer(() => {
         const saved = JSON.parse(localStorage.getItem("todos") || '[]') as ITodo[];
 
         store.setTodos(saved);
-      });
+      }, [store]);
 
       useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(store.todos));

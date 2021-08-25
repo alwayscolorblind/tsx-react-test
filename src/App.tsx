@@ -1,12 +1,12 @@
-import React, {createContext} from 'react';
+import React, { createContext } from 'react';
 
-import {Navbar} from "./components/Navbar";
+import { Navbar } from "./components/Navbar";
 
 import './App.css';
 
 import TodosPage from "./pages/TodosPage";
 
-import {AboutPage} from "./pages/AboutPage";
+import { AboutPage } from "./pages/AboutPage";
 
 import {
   BrowserRouter,

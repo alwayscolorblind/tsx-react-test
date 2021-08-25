@@ -1,6 +1,6 @@
-import React, {FC, useContext} from "react";
+import React, { FC, useContext } from "react";
 
-import {StoreContext} from "../App";
+import { StoreContext } from "../App";
 
 const TodoList: FC = () => {
   const {
