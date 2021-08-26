@@ -18,7 +18,7 @@ import Store from "./stores/store";
 
 const store = new Store();
 
-const StoreContext = createContext(store);
+export const StoreContext = createContext(store);
 
 const App: React.FC = () => {
   return (
@@ -37,7 +37,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-export {
-  StoreContext
-};

@@ -1,13 +1,13 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 
-import { StoreContext } from "../App";
+import { useStore } from "../hooks/useStore";
 
 const TodoList: FC = () => {
   const {
     todos,
     onToggle,
     onRemove
-  } = useContext(StoreContext);
+  } = useStore();
 
   if (!todos.length) {
     return <p className="center">There is empty!</p>

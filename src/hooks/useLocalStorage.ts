@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
 import Store from "../stores/store";
-import {ITodo} from "../interfaces/interfaces";
+import { ITodo } from "../interfaces/interfaces";
 
-export const useUpdateLocalStorage = (store: Store) => {
+export const useLocalStorage = (store: Store) => {
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("todos") || '[]') as ITodo[];
 

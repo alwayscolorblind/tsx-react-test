@@ -1,11 +1,11 @@
-import React, { FC, useContext } from 'react';
-
-import { StoreContext } from "../App";
+import React, { FC } from 'react';
 
 import { useInput } from "../hooks/useInput";
 
+import { useStore } from "../hooks/useStore";
+
 const TodoForm: FC = () => {
-    const { handleAdd } = useContext(StoreContext);
+    const { handleAdd } = useStore();
 
     const inp = useInput(handleAdd);
 
