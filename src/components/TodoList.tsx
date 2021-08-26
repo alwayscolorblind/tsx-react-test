@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { useStore } from "../hooks/useStore";
+import { useStore } from "hooks/useStore";
 
 const TodoList: FC = () => {
   const {

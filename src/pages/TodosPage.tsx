@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
 
-import TodoForm from "../components/TodoForm";
+import TodoForm from "components/TodoForm";
 
-import TodoList from "../components/TodoList";
+import TodoList from "components/TodoList";
 
 import { observer } from "mobx-react";
 
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useTodosPreserve } from "hooks/useTodosPreserve";
 
-import { useStore } from "../hooks/useStore";
+import { useStore } from "hooks/useStore";
 
 const TodosPage: FC = observer(() => {
       const store = useStore();
 
-      useLocalStorage(store);
+      useTodosPreserve(store);
 
       return (
           <>

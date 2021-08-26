@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import { useInput } from "../hooks/useInput";
+import { useInput } from "hooks/useInput";
 
-import { useStore } from "../hooks/useStore";
+import { useStore } from "hooks/useStore";
 
 const TodoForm: FC = () => {
     const { handleAdd } = useStore();

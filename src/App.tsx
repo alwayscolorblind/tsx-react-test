@@ -1,12 +1,12 @@
-import React, { createContext } from 'react';
+import React from 'react';
 
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "components/Navbar";
 
-import './App.css';
+import 'App.css';
 
-import TodosPage from "./pages/TodosPage";
+import TodosPage from "pages/TodosPage";
 
-import { AboutPage } from "./pages/AboutPage";
+import { AboutPage } from "pages/AboutPage";
 
 import {
   BrowserRouter,
@@ -14,11 +14,11 @@ import {
   Switch
 } from "react-router-dom";
 
-import Store from "./stores/store";
+import Store from "stores/store";
+
+import { StoreContext } from "contexts/StoreContext";
 
 const store = new Store();
-
-export const StoreContext = createContext(store);
 
 const App: React.FC = () => {
   return (
