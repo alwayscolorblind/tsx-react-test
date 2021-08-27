@@ -8,6 +8,10 @@ import TodosPage from "pages/TodosPage";
 
 import { AboutPage } from "pages/AboutPage";
 
+import { DndProvider } from "react-dnd"
+
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import {
   BrowserRouter,
   Route,
@@ -24,14 +28,16 @@ const App: React.FC = () => {
   return (
       <BrowserRouter>
         <Navbar/>
-        <div className="container">
-          <StoreContext.Provider value={store}>
-            <Switch>
-              <Route component={TodosPage} path="/" exact/>
-              <Route component={AboutPage} path="/about"/>
-            </Switch>
-          </StoreContext.Provider>
-        </div>
+        <DndProvider backend={HTML5Backend}>
+          <div className="container">
+            <StoreContext.Provider value={store}>
+              <Switch>
+                <Route component={TodosPage} path="/" exact/>
+                <Route component={AboutPage} path="/about"/>
+              </Switch>
+            </StoreContext.Provider>
+          </div>
+        </DndProvider>
       </BrowserRouter>
   );
 };

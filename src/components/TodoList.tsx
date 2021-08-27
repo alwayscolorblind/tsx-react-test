@@ -1,13 +1,30 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 
 import { useStore } from "hooks/useStore";
+import Card from "components/Card";
 
 const TodoList: FC = () => {
   const {
     todos,
-    onToggle,
-    onRemove
+    setTodos
   } = useStore();
+
+  const moveCard = useCallback(
+      (dragIndex: number, hoverIndex: number) => {
+        const dragCard = todos[dragIndex];
+
+        const newTodos = [
+            ...todos
+        ];
+
+        newTodos.splice(dragIndex, 1);
+        newTodos.splice(hoverIndex, 0, dragCard);
+
+        setTodos(newTodos)
+      },
+      [todos, setTodos],
+  );
+
 
   if (!todos.length) {
     return <p className="center">There is empty!</p>
@@ -15,30 +32,14 @@ const TodoList: FC = () => {
 
   return (
       <ul>
-        {todos.map(todo => {
-          const className = ['todo'];
-
-          if (todo.completed) {
-            className.push('completed')
-          }
-
+        {todos.map((todo, index) => {
           return (
-              <li className={className.join(' ')} key={todo.id}>
-                <label>
-                  <input
-                      type="checkbox"
-                      checked={todo.completed}
-                      onChange={() => onToggle(todo.id)}
-                  />
-                  <span>{todo.title}</span>
-                  <i
-                      className="material-icons red-text"
-                      onClick={() => onRemove(todo.id)}
-                  >
-                    delete
-                  </i>
-                </label>
-              </li>
+              <Card
+                  key={todo.id}
+                  todo={todo}
+                  moveCard={moveCard}
+                  index={index}
+              />
           );
         })}
       </ul>
