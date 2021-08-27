@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-import { ITodo } from "interfaces/interfaces";
+import { ITodo } from "@interfaces/interfaces";
 
 class Store {
   todos: ITodo[] = [];

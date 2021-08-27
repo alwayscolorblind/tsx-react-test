@@ -20,7 +20,30 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "experimentalDecorators": true,
-    "baseUrl": "./src/"
+    "baseUrl": "./src/",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@contexts/*": [
+        "contexts/*"
+      ],
+      "@interfaces/*": [
+        "interfaces/*"
+      ],
+      "@item-types/*": [
+        "item-types/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@stores/*": [
+        "stores/*"
+      ]
+    }
   },
   "include": [
     "src"

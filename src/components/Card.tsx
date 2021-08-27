@@ -1,19 +1,19 @@
 import React, { FC, useRef } from 'react';
 
-import { useStore } from "hooks/useStore";
-
-import { ITodo } from "interfaces/interfaces";
+import { useStore } from "@hooks/useStore";
 
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 
-import { ItemTypes } from "../item-types/item-types";
+import { ItemTypes } from "@item-types/item-types";
 
 import { XYCoord } from "dnd-core";
+import {useCardMoving} from "@hooks/useCardMoving";
 
 interface CardProps {
-  todo: ITodo,
+  id: number,
+  title: string,
+  completed: boolean,
   index: number,
-  moveCard: (dragIndex: number, hoverIndex: number) => void
 }
 
 interface DragItem {
@@ -22,13 +22,15 @@ interface DragItem {
   type: string
 }
 
-const Card: FC<CardProps> = ({ todo, index, moveCard }) => {
+const Card: FC<CardProps> = ({ id, title, completed, index }) => {
   const {
     onToggle,
     onRemove
   } = useStore();
 
   const className = ['todo'];
+
+  const moveCard = useCardMoving();
 
   const ref = useRef<HTMLLIElement>(null);
 
@@ -77,14 +79,14 @@ const Card: FC<CardProps> = ({ todo, index, moveCard }) => {
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.CARD,
     item: () => {
-      return { id: todo.id, index }
+      return { id, index }
     },
     collect: (monitor: any) => ({
       isDragging: monitor.isDragging()
     })
   });
 
-  if (todo.completed) {
+  if (completed) {
     className.push('completed')
   }
 
@@ -96,20 +98,20 @@ const Card: FC<CardProps> = ({ todo, index, moveCard }) => {
       <li
           ref={ref}
           className={className.join(' ')}
-          key={todo.id}
+          key={id}
           style={{ opacity }}
           data-handler-id={handlerId}
       >
         <label>
           <input
               type="checkbox"
-              checked={todo.completed}
-              onChange={() => onToggle(todo.id)}
+              checked={completed}
+              onChange={() => onToggle(id)}
           />
-          <span>{todo.title}</span>
+          <span>{title}</span>
           <i
               className="material-icons red-text"
-              onClick={() => onRemove(todo.id)}
+              onClick={() => onRemove(id)}
           >
             delete
           </i>

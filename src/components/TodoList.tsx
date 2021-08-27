@@ -1,30 +1,12 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
 
-import { useStore } from "hooks/useStore";
-import Card from "components/Card";
+import { useStore } from "@hooks/useStore";
+import Card from "@components/Card";
 
 const TodoList: FC = () => {
   const {
-    todos,
-    setTodos
+    todos
   } = useStore();
-
-  const moveCard = useCallback(
-      (dragIndex: number, hoverIndex: number) => {
-        const dragCard = todos[dragIndex];
-
-        const newTodos = [
-            ...todos
-        ];
-
-        newTodos.splice(dragIndex, 1);
-        newTodos.splice(hoverIndex, 0, dragCard);
-
-        setTodos(newTodos)
-      },
-      [todos, setTodos],
-  );
-
 
   if (!todos.length) {
     return <p className="center">There is empty!</p>
@@ -36,8 +18,9 @@ const TodoList: FC = () => {
           return (
               <Card
                   key={todo.id}
-                  todo={todo}
-                  moveCard={moveCard}
+                  id={todo.id}
+                  title={todo.title}
+                  completed={todo.completed}
                   index={index}
               />
           );
