@@ -3,6 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Navbar } from "@components/Navbar";
+
 import withRouter from "../decorators/withRouter";
 
 export default {
